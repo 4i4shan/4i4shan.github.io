@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishaan Nakhare | Business Intelligence & Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0c10;
+            --card: #1a1d24;
+            --muted: #9aa4af;
+            --text: #eef2f6;
+            --brand: #60a5fa;
+            --accent: #22d3ee;
+            --ring: #3b82f6;
+            --shadow: 0 12px 34px rgba(0,0,0,.35);
+            --section-bg: #111318;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: 
+                radial-gradient(900px 420px at 10% -10%, rgba(96,165,250,.18), transparent),
+                radial-gradient(700px 360px at 95% -20%, rgba(34,211,238,.14), transparent),
+                var(--bg);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 29, 36, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #2a2f3a;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--brand);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--brand);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+        
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .profile-visual {
+                order: -1;
+            }
+        }
+        
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        
+        .badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+        
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #2a2f3a;
+            background: #1a1d24;
+            color: var(--text);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn.primary {
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            border-color: transparent;
+            color: #0b0c10;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .profile-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--brand);
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg);
+            font-size: 80px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(96, 165, 250, 0.3);
+        }
+        
+        /* Section Styling */
+        .section {
+            margin-bottom: 6rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--brand);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+        }
+        
+        .about-text {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Experience Section - Updated to match About Me style */
+        .experience-content {
+            max-width: 800px;
+        }
+        
+        .experience-text {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        .experience-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .experience-item {
+            margin-bottom: 2rem;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--brand);
+        }
+        
+        .item-meta {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .project-item {
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid #2a2f3a;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+        
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand);
+        }
+        
+        .project-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-item h3 {
+            margin: 0 0 1rem;
+            font-size: 1.25rem;
+            color: var(--brand);
+        }
+        
+        .project-item p {
+            margin: 0 0 1.5rem;
+            color: #cbd5e1;
+            font-size: 1rem;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-tag {
+            padding: 0.375rem 0.75rem;
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--brand);
+        }
+        
+        .item-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .item-link:hover {
+            gap: 0.75rem;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            max-width: 800px;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-tag-large {
+            padding: 0.75rem 1.25rem;
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 20px;
+            font-size: 1rem;
+            color: var(--brand);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 1px solid #2a2f3a;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--brand);
+        }
+        
+        .copyright {
+            color: var(--muted);
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero-links {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--text);
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Ishaan Nakhare</a>
+        <nav class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#skills" class="nav-link">Skills</a>
+        </nav>
+        <button class="mobile-menu-btn" style="display: none;">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="profile-visual">
+                <div class="avatar">
+                    <img src="/Users/ishaannakhare/Documents/Webiste/profile.jpg" alt="Ishaan Nakhare">
+                </div>
+            </div>
+            <div class="hero-text">
+                <h1>Ishaan Nakhare</h1>
+                <p class="subtitle">Business Intelligence & Analytics</p>
+                <span class="badge">
+                    <span class="dot" aria-hidden="true"></span> 
+                    Open to Summer 2026 Internships & Full-time Opportunities
+                </span>
+                <div class="hero-links">
+                    <a class="btn primary" href="https://www.linkedin.com/in/ishaannakhare" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a class="btn" href="Ishaan_Nakhare.pdf" target="_blank" rel="noopener">
+                        <i class="fas fa-file-pdf"></i> Résumé
+                    </a>
+                    <a class="btn" href="https://github.com/4i4shan" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a class="btn" href="mailto:inakhare4@gmail.com">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am currently pursuing a Master's in Business Intelligence & Analytics at Stevens Institute of Technology, with an expected graduation in May 2026. My academic focus includes advanced coursework in Business Intelligence, Data Analytics & Machine Learning, Multivariate Data Analysis, Supply Chain Analytics, and Marketing Analytics.</p>
+                    
+                    <p>My background includes a Bachelor's degree in Computer Science and practical experience as a Business Analyst Intern, where I optimized applications and improved efficiency. I'm passionate about transforming complex data into actionable insights that drive strategic business decisions.</p>
+                    
+                    <p>My goal is to leverage my technical skills in data analysis, visualization, and business intelligence to solve complex business problems and contribute to data-driven decision-making processes in a professional setting.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section - Updated to match About Me style -->
+        <section id="experience" class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-content">
+                <div class="experience-text">
+                    <div class="experience-item">
+                        <div class="item-title">Beyond Technologies</div>
+                        <div class="item-meta">Business Analyst Intern | Feb 2023 - Feb 2024 | Pune, India</div>
+                        <p>During my internship, I engineered and optimized Power Apps solutions for the JCB UK team, collaborating with business analysts during the transition from Lotus Notes to Microsoft 365. I successfully optimized the Electronic Product Improvement Proposal (EPIP) application by integrating SharePoint lists for data management, resulting in a 45% reduction in data loading time and a 40% increase in database entry speed.</p>
+                        
+                        <p>I also enhanced the Vendor JCB application by integrating Power Automate to streamline the processing of user-generated requests, improving efficiency by 30% and reducing vendor request processing time by 45%.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <a href="https://github.com/4i4shan/Cycllistic-Analysis" target="_blank" class="project-item">
+                    <h3>Cyclistic Bike-Share Analysis</h3>
+                    <p>Capstone project analyzing rider behavior with SQL and Python, developing KPIs and executive dashboards that simplified complex trends and reduced stakeholder decision-making time by 20%.</p>
+                    <div class="skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Google BigQuery</span>
+                        <span class="skill-tag">Data Visualization</span>
+                    </div>
+                    <div class="item-link">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                <a href="https://github.com/4i4shan/NY-housing-analysis" target="_blank" class="project-item">
+                    <h3>NY Housing Market Analysis</h3>
+                    <p>Exploratory analysis of NY residential property data identifying key price drivers through correlation and trend analysis, with visualizations to support investor-focused decision-making.</p>
+                    <div class="skills">
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Market Analysis</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Trend Analysis</span>
+                    </div>
+                    <div class="item-link">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skills-grid">
+                    <span class="skill-tag-large">Python</span>
+                    <span class="skill-tag-large">SQL</span>
+                    <span class="skill-tag-large">R</span>
+                    <span class="skill-tag-large">Java</span>
+                    <span class="skill-tag-large">Power BI</span>
+                    <span class="skill-tag-large">Tableau</span>
+                    <span class="skill-tag-large">PowerApps</span>
+                    <span class="skill-tag-large">SharePoint</span>
+                    <span class="skill-tag-large">Power Automate</span>
+                    <span class="skill-tag-large">ERWIN</span>
+                    <span class="skill-tag-large">Machine Learning</span>
+                    <span class="skill-tag-large">Data Analytics</span>
+                    <span class="skill-tag-large">Business Intelligence</span>
+                    <span class="skill-tag-large">Data Visualization</span>
+                    <span class="skill-tag-large">Google BigQuery</span>
+                    <span class="skill-tag-large">PostgreSQL</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:inakhare4@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> inakhare4@gmail.com
+                </a>
+                <a href="tel:+12018812359" class="footer-link">
+                    <i class="fas fa-phone"></i> (201) 881-2359
+                </a>
+                <a href="https://www.linkedin.com/in/ishaannakhare" target="_blank" class="footer-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/4i4shan" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+            <div class="copyright">
+                <p>© 2024 Ishaan Nakhare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(26, 29, 36, 0.98)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'rgba(26, 29, 36, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
