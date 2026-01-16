@@ -15,258 +15,234 @@
             --text: #eef2f6;
             --brand: #60a5fa;
             --accent: #22d3ee;
-            --ring: #3b82f6;
             --shadow: 0 20px 40px rgba(0,0,0,.45);
+            --glass: blur(12px);
+        }
+
+        /* Light Mode Variables */
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --card: rgba(255, 255, 255, 0.8);
+            --card-border: #e2e8f0;
+            --muted: #64748b;
+            --text: #0f172a;
+            --brand: #2563eb;
+            --accent: #0891b2;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.4s, color 0.3s; }
         html { scroll-behavior: smooth; }
         
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text);
-            background: 
-                radial-gradient(circle at 0% 0%, rgba(96,165,250,0.15) 0%, transparent 35%),
-                radial-gradient(circle at 100% 100%, rgba(34,211,238,0.1) 0%, transparent 35%),
-                var(--bg);
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(96,165,250,0.1) 0%, transparent 35%),
+                radial-gradient(circle at 100% 100%, rgba(34,211,238,0.05) 0%, transparent 35%);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: #2a2f3a; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--brand); }
-
         header {
             position: fixed;
             top: 0; width: 100%;
-            background: rgba(11, 12, 16, 0.8);
-            backdrop-filter: blur(12px);
+            background: var(--card);
+            backdrop-filter: var(--glass);
             border-bottom: 1px solid var(--card-border);
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
         }
-        
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(to right, var(--brand), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
 
-        .nav-link {
-            color: var(--muted);
-            text-decoration: none;
-            font-weight: 500;
-            margin-left: 2rem;
-            transition: all 0.3s;
-            font-size: 0.95rem;
+        .theme-toggle {
+            background: var(--card-border);
+            border: none;
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            color: var(--text);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
         }
-        .nav-link:hover { color: var(--text); text-shadow: 0 0 10px rgba(96,165,250,0.5); }
 
         main { max-width: 1100px; margin: 0 auto; padding: 10rem 2rem 4rem; }
 
-        /* Hero Styling */
-        .hero { display: flex; align-items: center; gap: 4rem; margin-bottom: 8rem; }
-        .hero-text h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 1rem; }
-        
-        .badge {
-            background: rgba(96,165,250,0.1);
-            border: 1px solid rgba(96,165,250,0.2);
-            padding: 0.6rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--brand);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 2rem;
-        }
-
-        .avatar {
-            width: 280px; height: 280px;
-            border-radius: 24%; /* Squircle look */
-            background: linear-gradient(135deg, var(--brand), var(--accent));
-            padding: 4px;
-            position: relative;
-        }
-        .avatar img { width: 100%; height: 100%; border-radius: 22%; object-fit: cover; filter: grayscale(20%); transition: 0.5s; }
-        .avatar:hover img { filter: grayscale(0%); transform: scale(1.02); }
-
-        /* Project Cards Styling */
-        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; letter-spacing: -1px; }
-
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2.5rem; }
+        /* Project Card Animation Styling */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; perspective: 1000px; }
 
         .project-item {
             background: var(--card);
             border: 1px solid var(--card-border);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
             text-decoration: none;
             color: inherit;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
+
+        /* The Glow Effect */
+        .project-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(96,165,250,0.15) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .project-item:hover::after { opacity: 1; }
 
         .project-item:hover {
-            transform: translateY(-12px);
-            border-color: var(--brand);
-            background: rgba(26, 29, 36, 0.9);
             box-shadow: var(--shadow);
-        }
-
-        .project-item h3 { font-size: 1.5rem; color: var(--text); margin-bottom: 1rem; }
-        .project-item p { color: var(--muted); font-size: 1rem; flex-grow: 1; margin-bottom: 2rem; }
-
-        .skill-tag {
-            background: #111318;
-            color: var(--brand);
-            border: 1px solid #2a2f3a;
-            padding: 0.4rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* Button Styling */
-        .btn {
-            background: #1a1d24;
-            border: 1px solid var(--card-border);
-            padding: 0.8rem 1.6rem;
-            border-radius: 12px;
-            color: var(--text);
-            font-weight: 600;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn.primary { background: var(--text); color: var(--bg); border: none; }
-        .btn:hover { background: var(--brand); color: var(--bg); transform: translateY(-3px); }
-
-        .skill-tag-large {
             background: var(--card);
-            border: 1px solid var(--card-border);
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            font-weight: 600;
-            transition: 0.3s;
         }
-        .skill-tag-large:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: scale(1.05);
+
+        .project-item h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--brand); }
+        .project-item p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+        .skills-list { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .skill-tag { 
+            font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 6px; 
+            background: rgba(96,165,250,0.1); color: var(--brand); border: 1px solid rgba(96,165,250,0.2);
         }
+
+        /* Hero */
+        .hero { display: flex; align-items: center; gap: 3rem; margin-bottom: 6rem; }
+        .avatar {
+            width: 250px; height: 250px;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 2px solid var(--brand);
+            transform: rotate(3deg);
+            transition: 0.5s;
+        }
+        .avatar:hover { transform: rotate(0deg) scale(1.05); }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
         @media (max-width: 768px) {
             .hero { flex-direction: column; text-align: center; }
-            .projects-grid { grid-template-columns: 1fr; }
+            .avatar { transform: none; }
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
+
     <header>
-        <a href="#" class="logo">ISHAAN.N</a>
-        <nav class="nav-links">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#skills" class="nav-link">Skills</a>
-        </nav>
+        <a href="#" style="text-decoration:none" class="logo">
+            <h2 style="color:var(--text); letter-spacing:-1px;">ISHAAN<span style="color:var(--brand)">.</span></h2>
+        </a>
+        <div style="display:flex; align-items:center; gap:1.5rem;">
+            <nav class="nav-links" style="display: flex; gap: 1.5rem;">
+                <a href="#projects" style="color:var(--muted); text-decoration:none; font-weight:600;">Work</a>
+                <a href="#skills" style="color:var(--muted); text-decoration:none; font-weight:600;">Skills</a>
+            </nav>
+            <button class="theme-toggle" id="themeBtn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </header>
 
     <main>
         <section class="hero">
             <div class="hero-text">
-                <span class="badge"><span class="dot" style="width:8px;height:8px;background:var(--brand);border-radius:50%"></span> Available for Summer 2026 Opportunities</span>
-                <h1>Ishaan Nakhare</h1>
-                <p class="subtitle" style="font-size:1.5rem; color:var(--muted); margin-bottom:2rem;">Business Intelligence & Analytics @ Stevens</p>
-                <div class="hero-links">
-                    <a class="btn primary" href="https://www.linkedin.com/in/ishaannakhare" target="_blank">LinkedIn</a>
-                    <a class="btn" href="Ishaan_Nakhare.pdf" target="_blank">Résumé</a>
-                    <a class="btn" href="mailto:inakhare4@gmail.com">Contact</a>
+                <h1 style="font-size:3.5rem; margin-bottom:1rem; letter-spacing:-2px;">Insights through data.</h1>
+                <p style="color:var(--muted); font-size:1.2rem; max-width:600px; margin-bottom:2rem;">
+                    I'm Ishaan Nakhare, a Business Intelligence & Analytics student at Stevens. I specialize in turning complex datasets into strategic market stories.
+                </p>
+                <div style="display:flex; gap:1rem;">
+                    <a href="mailto:inakhare4@gmail.com" style="background:var(--brand); color:white; padding:0.8rem 1.5rem; border-radius:12px; text-decoration:none; font-weight:700;">Get in touch</a>
+                    <a href="https://www.linkedin.com/in/ishaannakhare" style="border:1px solid var(--card-border); color:var(--text); padding:0.8rem 1.5rem; border-radius:12px; text-decoration:none; font-weight:700;">LinkedIn</a>
                 </div>
             </div>
             <div class="avatar">
-                <img src="profile.jpg" alt="Ishaan Nakhare">
+                <img src="profile.jpg" alt="Ishaan">
             </div>
         </section>
 
-        <section id="projects" class="section">
-            <h2 class="section-title">Featured Projects</h2>
+        <section id="projects">
+            <h2 style="margin-bottom:2rem; font-size:2rem;">Selected Work</h2>
             <div class="projects-grid">
                 
                 <a href="https://github.com/4i4shan/BIA-810-Final-Project" target="_blank" class="project-item">
                     <h3>Anesthesia Market Dynamics</h3>
-                    <p>Strategic analysis of market cannibalization in the pharmaceutical industry. Utilized Medicare claims data to model prescriber behavior and launch impact.</p>
-                    <div class="skills">
+                    <p>Strategic analysis of market cannibalization in the pharmaceutical industry using Medicare claims data.</p>
+                    <div class="skills-list">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Market Strategy</span>
+                        <span class="skill-tag">BI</span>
                     </div>
                 </a>
 
                 <a href="https://github.com/4i4shan/BIA-810D-Midterm-Project" target="_blank" class="project-item">
                     <h3>Medicare CVM Claims</h3>
-                    <p>Comprehensive longitudinal study of Cardio Vascular Metabolic claims, identifying key growth trends and provider segmentation across the US.</p>
-                    <div class="skills">
+                    <p>Longitudinal study of Cardio Vascular Metabolic claims and healthcare provider segmentation.</p>
+                    <div class="skills-list">
                         <span class="skill-tag">NumPy</span>
                         <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">Analytics</span>
                     </div>
                 </a>
 
                 <a href="https://github.com/4i4shan/Cycllistic-Analysis" target="_blank" class="project-item">
                     <h3>Cyclistic Bike-Share</h3>
-                    <p>Processing millions of rows of data to drive executive decision-making. Developed a KPI dashboard that reduced stakeholder reporting time by 20%.</p>
-                    <div class="skills">
+                    <p>Optimizing urban mobility through data. Built executive dashboards that reduced decision time by 20%.</p>
+                    <div class="skills-list">
                         <span class="skill-tag">SQL</span>
                         <span class="skill-tag">Tableau</span>
                         <span class="skill-tag">BigQuery</span>
                     </div>
                 </a>
 
-                <a href="https://github.com/4i4shan/NY-housing-analysis" target="_blank" class="project-item">
-                    <h3>NY Real Estate Trends</h3>
-                    <p>Leveraging R for statistical modeling to identify the primary drivers of property valuation in the New York residential market.</p>
-                    <div class="skills">
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Stats</span>
-                        <span class="skill-tag">Data Viz</span>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-        <section id="skills" class="section">
-            <h2 class="section-title">Expertise</h2>
-            <div class="skills-grid">
-                <span class="skill-tag-large">Python (Pandas, NumPy)</span>
-                <span class="skill-tag-large">SQL (PostgreSQL)</span>
-                <span class="skill-tag-large">Tableau / Power BI</span>
-                <span class="skill-tag-large">Machine Learning</span>
-                <span class="skill-tag-large">Google BigQuery</span>
-                <span class="skill-tag-large">PowerApps & Automate</span>
             </div>
         </section>
     </main>
 
-    <footer style="padding: 4rem 2rem; border-top: 1px solid var(--card-border); text-align: center;">
-        <p style="color: var(--muted); font-size: 0.9rem;">© 2026 Ishaan Nakhare • Built for Business Intelligence</p>
-    </footer>
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('themeBtn');
+        const body = document.body;
+        const icon = themeBtn.querySelector('i');
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            icon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+
+        // Interactive Card Tilt & Glow Effect
+        const cards = document.querySelectorAll('.project-item');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Update glow position
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+                
+                // Update tilt
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+            });
+        });
+    </script>
 </body>
 </html>
