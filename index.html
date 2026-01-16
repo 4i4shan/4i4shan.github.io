@@ -41,7 +41,6 @@
             overflow-x: hidden;
         }
         
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -100,14 +99,12 @@
             width: 100%;
         }
         
-        /* Main Content */
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 8rem 2rem 4rem;
         }
         
-        /* Hero Section */
         .hero {
             display: grid;
             grid-template-columns: 300px 1fr;
@@ -122,10 +119,7 @@
                 text-align: center;
                 gap: 2rem;
             }
-            
-            .profile-visual {
-                order: -1;
-            }
+            .profile-visual { order: -1; }
         }
         
         .hero-text h1 {
@@ -230,10 +224,7 @@
             box-shadow: 0 12px 30px rgba(96, 165, 250, 0.3);
         }
         
-        /* Section Styling */
-        .section {
-            margin-bottom: 6rem;
-        }
+        .section { margin-bottom: 6rem; }
         
         .section-title {
             font-size: 2rem;
@@ -254,55 +245,13 @@
             background: var(--accent);
         }
         
-        /* About Section */
-        .about-content {
-            max-width: 800px;
-        }
+        .about-content, .experience-content { max-width: 800px; }
+        .about-text, .experience-text { font-size: 1.125rem; color: #cbd5e1; line-height: 1.7; }
+        .about-text p, .experience-text p { margin-bottom: 1.5rem; }
+        .experience-item { margin-bottom: 2rem; }
+        .item-title { font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--brand); }
+        .item-meta { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; font-style: italic; }
         
-        .about-text {
-            font-size: 1.125rem;
-            color: #cbd5e1;
-            line-height: 1.7;
-        }
-        
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Experience Section - Updated to match About Me style */
-        .experience-content {
-            max-width: 800px;
-        }
-        
-        .experience-text {
-            font-size: 1.125rem;
-            color: #cbd5e1;
-            line-height: 1.7;
-        }
-        
-        .experience-text p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .experience-item {
-            margin-bottom: 2rem;
-        }
-        
-        .item-title {
-            font-weight: 600;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--brand);
-        }
-        
-        .item-meta {
-            color: var(--muted);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-        
-        /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -310,9 +259,7 @@
         }
         
         @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
+            .projects-grid { grid-template-columns: 1fr; }
         }
         
         .project-item {
@@ -342,152 +289,30 @@
             transition: transform 0.3s ease;
         }
         
-        .project-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand);
-        }
+        .project-item:hover { transform: translateY(-5px); border-color: var(--brand); }
+        .project-item:hover::before { transform: scaleX(1); }
+        .project-item h3 { margin: 0 0 1rem; font-size: 1.25rem; color: var(--brand); }
+        .project-item p { margin: 0 0 1.5rem; color: #cbd5e1; font-size: 1rem; }
         
-        .project-item:hover::before {
-            transform: scaleX(1);
-        }
+        .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .skill-tag { padding: 0.375rem 0.75rem; background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); border-radius: 20px; font-size: 0.875rem; color: var(--brand); }
+        .item-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-weight: 500; transition: all 0.3s ease; }
+        .item-link:hover { gap: 0.75rem; }
         
-        .project-item h3 {
-            margin: 0 0 1rem;
-            font-size: 1.25rem;
-            color: var(--brand);
-        }
+        .skills-container { max-width: 800px; }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .skill-tag-large { padding: 0.75rem 1.25rem; background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); border-radius: 20px; font-size: 1rem; color: var(--brand); font-weight: 500; }
         
-        .project-item p {
-            margin: 0 0 1.5rem;
-            color: #cbd5e1;
-            font-size: 1rem;
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .skill-tag {
-            padding: 0.375rem 0.75rem;
-            background: rgba(96, 165, 250, 0.1);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            border-radius: 20px;
-            font-size: 0.875rem;
-            color: var(--brand);
-        }
-        
-        .item-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .item-link:hover {
-            gap: 0.75rem;
-        }
-        
-        /* Skills Section */
-        .skills-container {
-            max-width: 800px;
-        }
-        
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .skill-tag-large {
-            padding: 0.75rem 1.25rem;
-            background: rgba(96, 165, 250, 0.1);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            border-radius: 20px;
-            font-size: 1rem;
-            color: var(--brand);
-            font-weight: 500;
-        }
-        
-        /* Footer */
-        footer {
-            border-top: 1px solid #2a2f3a;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-        }
-        
-        .footer-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            color: var(--brand);
-        }
-        
-        .copyright {
-            color: var(--muted);
-            font-size: 0.875rem;
-            text-align: center;
-        }
-        
-        /* Responsive Navigation */
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.25rem;
-            }
-            
-            .hero-links {
-                justify-content: center;
-            }
-        }
+        footer { border-top: 1px solid #2a2f3a; padding: 3rem 2rem; margin-top: 4rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+        .footer-link { display: flex; align-items: center; gap: 0.5rem; color: var(--muted); text-decoration: none; transition: color 0.3s ease; }
+        .footer-link:hover { color: var(--brand); }
+        .copyright { color: var(--muted); font-size: 0.875rem; text-align: center; }
         
         @media (max-width: 640px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: var(--text);
-                cursor: pointer;
-            }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; background: none; border: none; font-size: 1.5rem; color: var(--text); cursor: pointer; }
         }
     </style>
 </head>
@@ -541,9 +366,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>I am currently pursuing a Master's in Business Intelligence & Analytics at Stevens Institute of Technology, with an expected graduation in May 2026. My academic focus includes advanced coursework in Business Intelligence, Data Analytics & Machine Learning, Multivariate Data Analysis, Supply Chain Analytics, and Marketing Analytics.</p>
-                    
                     <p>My background includes a Bachelor's degree in Computer Science and practical experience as a Business Analyst Intern, where I optimized applications and improved efficiency. I'm passionate about transforming complex data into actionable insights that drive strategic business decisions.</p>
-                    
                     <p>My goal is to leverage my technical skills in data analysis, visualization, and business intelligence to solve complex business problems and contribute to data-driven decision-making processes in a professional setting.</p>
                 </div>
             </div>
@@ -557,7 +380,6 @@
                         <div class="item-title">Beyond Technologies</div>
                         <div class="item-meta">Business Analyst Intern | Feb 2023 - Feb 2024 | Pune, India</div>
                         <p>During my internship, I engineered and optimized Power Apps solutions for the JCB UK team, collaborating with business analysts during the transition from Lotus Notes to Microsoft 365. I successfully optimized the Electronic Product Improvement Proposal (EPIP) application by integrating SharePoint lists for data management, resulting in a 45% reduction in data loading time and a 40% increase in database entry speed.</p>
-                        
                         <p>I also enhanced the Vendor JCB application by integrating Power Automate to streamline the processing of user-generated requests, enhancing efficiency by 30% and reducing vendor request processing time by 45%.</p>
                     </div>
                 </div>
@@ -568,6 +390,20 @@
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
                 
+                <a href="https://github.com/4i4shan/BIA-810-Final-Project" target="_blank" class="project-item">
+                    <h3>Anesthesia Drug Market Cannibalization</h3>
+                    <p>Led a healthcare commercial analytics study using Medicare claims data to analyze market dynamics and track the cannibalization impact of new anesthesia drug launches on established brands.</p>
+                    <div class="skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Market Share Analysis</span>
+                        <span class="skill-tag">Healthcare Analytics</span>
+                        <span class="skill-tag">Data Visualization</span>
+                    </div>
+                    <div class="item-link">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
                 <a href="https://github.com/4i4shan/BIA-810D-Midterm-Project" target="_blank" class="project-item">
                     <h3>Medicare CVM Claims Analysis</h3>
                     <p>Analyzed Medicare CCLF claims data to evaluate CVM (Cardio Vascular Metabolic) claim trends, segment HCP behavior, and assess patient age demographics.</p>
@@ -585,7 +421,7 @@
 
                 <a href="https://github.com/4i4shan/Cycllistic-Analysis" target="_blank" class="project-item">
                     <h3>Cyclistic Bike-Share Analysis</h3>
-                    <p>Capstone project analyzing rider behavior with SQL and Python, developing KPIs and executive dashboards that simplified complex trends and reduced stakeholder decision-making time by 20%.</p>
+                    <p>Capstone project analyzing rider behavior with SQL and Python, developing KPIs and executive dashboards that simplified complex trends and reduced decision-making time by 20%.</p>
                     <div class="skills">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">SQL</span>
@@ -600,13 +436,12 @@
 
                 <a href="https://github.com/4i4shan/NY-housing-analysis" target="_blank" class="project-item">
                     <h3>NY Housing Market Analysis</h3>
-                    <p>Exploratory analysis of NY residential property data identifying key price drivers through correlation and trend analysis, with visualizations to support investor-focused decision-making.</p>
+                    <p>Exploratory analysis of NY residential property data identifying key price drivers through correlation and trend analysis, with visualizations to support investor decisions.</p>
                     <div class="skills">
                         <span class="skill-tag">R</span>
                         <span class="skill-tag">Data Visualization</span>
                         <span class="skill-tag">Market Analysis</span>
                         <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">Trend Analysis</span>
                     </div>
                     <div class="item-link">
                         View on GitHub <i class="fas fa-arrow-right"></i>
@@ -620,7 +455,7 @@
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-container">
                 <div class="skills-grid">
-                    <span class="skill-tag-large">Python</span>
+                    <span class="skill-tag-large">Python (Pandas, NumPy)</span>
                     <span class="skill-tag-large">SQL</span>
                     <span class="skill-tag-large">R</span>
                     <span class="skill-tag-large">Java</span>
@@ -658,30 +493,24 @@
                 </a>
             </div>
             <div class="copyright">
-                <p>© 2024 Ishaan Nakhare. All rights reserved.</p>
+                <p>© 2026 Ishaan Nakhare. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
                 if (targetElement) {
                     const offsetTop = targetElement.offsetTop - 100;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
                 }
             });
         });
         
-        // Header background on scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
