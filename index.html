@@ -293,6 +293,36 @@
         .project-item:hover::before { transform: scaleX(1); }
         .project-item h3 { margin: 0 0 1rem; font-size: 1.25rem; color: var(--brand); }
         .project-item p { margin: 0 0 1.5rem; color: #cbd5e1; font-size: 1rem; }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .project-badge.new {
+            background: rgba(34, 211, 238, 0.12);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            color: var(--accent);
+        }
+
+        .project-badge.ml {
+            background: rgba(167, 139, 250, 0.12);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            color: #a78bfa;
+        }
         
         .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
         .skill-tag { padding: 0.375rem 0.75rem; background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); border-radius: 20px; font-size: 0.875rem; color: var(--brand); }
@@ -389,6 +419,27 @@
         <section id="projects" class="section">
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
+
+                <!-- NEW: Insurance Fraud Detection -->
+                <a href="https://github.com/4i4shan/Vehicle-Insurance-Fraud-Detection" target="_blank" class="project-item">
+                    <div class="project-meta">
+                        <span class="project-badge new">✦ New</span>
+                        <span class="project-badge ml">ML</span>
+                    </div>
+                    <h3>Vehicle Insurance Fraud Detection</h3>
+                    <p>End-to-end fraud classification on 15,420 vehicle claims using XGBoost, Random Forest, and Logistic Regression. Applied SMOTE to address a 6% fraud rate imbalance. Includes business impact analysis translating model performance into estimated dollar savings.</p>
+                    <div class="skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">XGBoost</span>
+                        <span class="skill-tag">Scikit-Learn</span>
+                        <span class="skill-tag">SMOTE</span>
+                        <span class="skill-tag">Insurance Analytics</span>
+                        <span class="skill-tag">Classification</span>
+                    </div>
+                    <div class="item-link">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
                 
                 <a href="https://github.com/4i4shan/BIA-810-Final-Project" target="_blank" class="project-item">
                     <h3>Anesthesia Drug Market Cannibalization</h3>
@@ -488,6 +539,8 @@
                     <span class="skill-tag-large">Data Visualization</span>
                     <span class="skill-tag-large">Google BigQuery</span>
                     <span class="skill-tag-large">PostgreSQL</span>
+                    <span class="skill-tag-large">XGBoost</span>
+                    <span class="skill-tag-large">Scikit-Learn</span>
                 </div>
             </div>
         </section>
